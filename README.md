@@ -23,17 +23,19 @@ Additionally, Infracost integration estimates the cost before deployment.
 # File Structure
 ```
 .
-├── ec2.tf                 # EC2 instance & AMI data
-├── lambda.tf              # Lambda packaging, IAM roles, functions
-├── scheduler.tf           # EventBridge rules, targets, Lambda permissions
-├── security.tf            # Security groups for EC2 (and optionally Lambda)
-├── variables.tf           # Configurable variables (region, instance type, cron, etc.)
-├── outputs.tf             # Outputs for important resources & schedules
-├── provider.tf            # AWS provider configuration
+├── ec2.tf                         # EC2 instance & AMI data
+├── lambda.tf                      # Lambda packaging, IAM roles, functions
+├── scheduler.tf                   # EventBridge rules, targets, Lambda permissions
+├── security.tf                    # Security groups for EC2 (and optionally Lambda)
+├── variables.tf                   # Configurable variables (region, instance type, cron, etc.)
+├── outputs.tf                     # Outputs for important resources & schedules
+├── provider.tf                    # AWS provider configuration
 ├── lambda_src/
 │   ├── start_ec2.py
-│   └── stop_ec2.py
-├── Makefile               # Terraform + Infracost commands
+│   ├── stop_ec2.py
+│   └── test_lambda_functions.py
+├── Makefile                       # Terraform + Infracost commands
+├── jenkinsfile
 └── README.md
 ```
 # Process Flow
