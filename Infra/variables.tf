@@ -1,0 +1,10 @@
+variable "aws_region" { default = "ap-south-1" }
+variable "instance_type" { default = "t2.micro" }
+variable "volume_size" { default = 25 }
+variable "managed_tag_key" { default = "auto:managed" }
+variable "managed_tag_value" { default = "true" }
+variable "workday_start_time_cron" { default = "cron(30 1 ? * MON-FRI *)" }
+variable "workday_end_time_cron" { default = "cron(30 17 ? * MON-FRI *)" }
+variable "timezone" { default = "Asia/Kolkata" }
+variable "budget_alert_email" { default = "you@example.com" }                   //Add your email here
+variable "my_ip" { description = "Your public IP (for SSH SG) e.g. 1.2.3.4/32" }
