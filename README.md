@@ -18,6 +18,8 @@ Additionally, Infracost integration estimates the cost before deployment.
 5. Security Groups: Restricts SSH access to your IP, allows HTTP optionally.
 6. Infracost: Estimates cost before terraform apply.
 
+![alt text](EC2_costOptimize.png)
+
 # File Structure
 ```
 .
