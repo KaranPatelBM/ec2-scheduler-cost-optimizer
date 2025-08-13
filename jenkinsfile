@@ -72,12 +72,12 @@ pipeline {
         }
         stage('Lambda Lint & Bandit') {
           steps {
-            dir('lambda_src') {
+            dir('lambda') {
               sh '''
                 pylint *.py || true
                 bandit -r . -f json -o bandit-report.json || true
               '''
-              archiveArtifacts artifacts: 'lambda_src/bandit-report.json', allowEmptyArchive: true
+              archiveArtifacts artifacts: 'lambda/bandit-report.json', allowEmptyArchive: true
             }
           }
         }
@@ -99,7 +99,7 @@ pipeline {
     // 6. Lambda Unit Tests
     stage('Run Lambda Tests') {
       steps {
-        dir('lambda_src') {
+        dir('lambda') {
           sh '''
             if [ -f test_lambda_functions.py ]; then
               pytest test_lambda_functions.py -q

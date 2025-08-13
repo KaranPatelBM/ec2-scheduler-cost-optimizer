@@ -6,5 +6,5 @@ variable "managed_tag_value" { default = "true" }
 variable "workday_start_time_cron" { default = "cron(30 1 ? * MON-FRI *)" }
 variable "workday_end_time_cron" { default = "cron(30 17 ? * MON-FRI *)" }
 variable "timezone" { default = "Asia/Kolkata" }
-variable "budget_alert_email" { default = "you@example.com" }                   //Add your email here
+variable "budget_alert_email" { default = "you@example.com" } //Add your email here
 variable "my_ip" { description = "Your public IP (for SSH SG) e.g. 1.2.3.4/32" }

@@ -3,14 +3,14 @@
 # ------------------------
 data "archive_file" "start_lambda_zip" {
   type        = "zip"
-  source_file = "${path.module}/lambda_src/start_ec2.py"
-  output_path = "${path.module}/lambda_src/start_ec2.zip"
+  source_file = "${path.module}/../lambda/start_ec2.py"
+  output_path = "${path.module}/../lambda/start_ec2.zip"
 }
 
 data "archive_file" "stop_lambda_zip" {
   type        = "zip"
-  source_file = "${path.module}/lambda_src/stop_ec2.py"
-  output_path = "${path.module}/lambda_src/stop_ec2.zip"
+  source_file = "${path.module}/../lambda/stop_ec2.py"
+  output_path = "${path.module}/../lambda/stop_ec2.zip"
 }
 
 # ------------------------
@@ -22,7 +22,7 @@ resource "aws_iam_role" "lambda_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
-      Effect = "Allow"
+      Effect    = "Allow"
       Principal = { Service = "lambda.amazonaws.com" }
       Action    = "sts:AssumeRole"
     }]
@@ -44,12 +44,12 @@ resource "aws_iam_role_policy_attachment" "lambda_basic" {
 # Lambda Functions
 # ------------------------
 resource "aws_lambda_function" "start_ec2" {
-  filename         = data.archive_file.start_lambda_zip.output_path
-  function_name    = "start-ec2"
-  role             = aws_iam_role.lambda_role.arn
-  handler          = "start_ec2.lambda_handler"
-  runtime          = "python3.9"
-  timeout          = 30
+  filename      = data.archive_file.start_lambda_zip.output_path
+  function_name = "start-ec2"
+  role          = aws_iam_role.lambda_role.arn
+  handler       = "start_ec2.lambda_handler"
+  runtime       = "python3.9"
+  timeout       = 30
 
   environment {
     variables = {
@@ -60,12 +60,12 @@ resource "aws_lambda_function" "start_ec2" {
 }
 
 resource "aws_lambda_function" "stop_ec2" {
-  filename         = data.archive_file.stop_lambda_zip.output_path
-  function_name    = "stop-ec2"
-  role             = aws_iam_role.lambda_role.arn
-  handler          = "stop_ec2.lambda_handler"
-  runtime          = "python3.9"
-  timeout          = 30
+  filename      = data.archive_file.stop_lambda_zip.output_path
+  function_name = "stop-ec2"
+  role          = aws_iam_role.lambda_role.arn
+  handler       = "stop_ec2.lambda_handler"
+  runtime       = "python3.9"
+  timeout       = 30
 
   environment {
     variables = {

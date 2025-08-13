@@ -15,12 +15,12 @@ resource "aws_instance" "dev_ec2" {
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
   root_block_device {
-    volume_size           = var.volume_size
+    volume_size = var.volume_size
     //delete_on_termination = false  # Keeps the EBS volume even if instance is terminated
   }
 
   tags = {
-    Name                    = "dev-instance"
+    Name                     = "dev-instance"
     "${var.managed_tag_key}" = var.managed_tag_value
   }
 }
